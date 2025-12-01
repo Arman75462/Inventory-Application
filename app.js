@@ -2,6 +2,9 @@ import express from "express";
 import path from "path";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
+import { indexRouter } from "./routes/indexRouter.js";
+import { itemsRouter } from "./routes/itemsRouter.js";
+import { categoriesRouter } from "./routes/categoriesRouter.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config();
@@ -18,9 +21,9 @@ app.use(express.static(assetsPath));
 /* Parse URL-encoded form data */
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.send("Hello world!");
-});
+app.use("/", indexRouter);
+app.use("/items", itemsRouter);
+app.use("/categories", categoriesRouter);
 
 app.get("/{*splat}", (req, res) => {
   res.status(404).send("<h1 style='color: red'>404 - PAGE NOT FOUND</h1>");

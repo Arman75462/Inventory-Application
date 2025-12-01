@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "app": "node --watch app.js"
+    "app": "node --watch app.js",
+    "populate": "node ./db/populatedb.js"
   },
   "keywords": [],
   "author": "",
