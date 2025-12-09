@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/global.css" />
+    <title>Grocery Store</title>
+  </head>
+  <body>
+    <%- include("../partials/header.ejs") %>
+
+    <a href="/products"><button>&lt;&lt; Return to products</button></a>
+
+    <div>
+      <h1><%= productDetails.name %></h1>
+      <p><%= productDetails.emoji %></p>
+      <p><%= productDetails.price %></p>
+      <p style="color: <%=productDetails.color%>">
+        <%= productDetails.category %>
+      </p>
+      <p><%= productDetails.description %></p>
+      <p>Quantity: <%= productDetails.quantity %></p>
+
+      <a href="/products/edit/<%=productDetails.id%>"><button>Edit</button></a>
+
+      <form action="/products/delete/<%=productDetails.id%>" method="POST">
+        <input
+          type="password"
+          name="adminPassword"
+          placeholder="Enter admin password"
+          required
+        />
+        <button>Delete</button>
+      </form>
+    </div>
+
+    <%- include("../partials/footer.ejs") %>
+  </body>
+</html>

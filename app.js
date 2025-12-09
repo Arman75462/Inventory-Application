@@ -2,8 +2,8 @@ import express from "express";
 import path from "path";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
-import { indexRouter } from "./routes/indexRouter.js";
-import { itemsRouter } from "./routes/itemsRouter.js";
+import { homeRouter } from "./routes/homeRouter.js";
+import { productsRouter } from "./routes/productsRouter.js";
 import { categoriesRouter } from "./routes/categoriesRouter.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,8 +21,8 @@ app.use(express.static(assetsPath));
 /* Parse URL-encoded form data */
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", indexRouter);
-app.use("/items", itemsRouter);
+app.use("/", homeRouter);
+app.use("/products", productsRouter);
 app.use("/categories", categoriesRouter);
 
 app.get("/{*splat}", (req, res) => {
@@ -38,5 +38,5 @@ app.listen(PORT, (err) => {
   if (err) {
     throw err;
   }
-  console.log(`App running on port: ${PORT}`);
+  console.log(`App running at: http://localhost:${PORT}/`);
 });

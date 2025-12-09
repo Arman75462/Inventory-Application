@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/global.css" />
+    <title>Grocery Store</title>
+  </head>
+  <body>
+    <%- include("../partials/header.ejs") %>
+
+    <a href="/products/product/<%=productDetails.id%>"
+      ><button>&lt;&lt; Return to <%=productDetails.name%></button></a
+    >
+
+    <form method="post" action="/products/edit/<%=productDetails.id%>">
+      <h1><%= productDetails.name %></h1>
+      <p><%= productDetails.emoji %></p>
+      <p>Category: <%= productDetails.category %></p>
+
+      <label for="newProductPrice">Price:</label>
+      <input
+        type="number"
+        id="newProductPrice"
+        name="newProductPrice"
+        step="0.01"
+        value="<%= productDetails.price %>"
+        required
+      />
+
+      <label for="newProductDescription">Description:</label>
+      <textarea
+        id="newProductDescription"
+        name="newProductDescription"
+        maxlength="100"
+      >
+ <%= productDetails.description %></textarea
+      >
+
+      <label for="newProductQuantity">Quantity:</label>
+      <input
+        type="number"
+        id="newProductQuantity"
+        name="newProductQuantity"
+        value="<%= productDetails.quantity %>"
+        required
+      />
+
+      <button type="submit">Submit edits</button>
+    </form>
+
+    <%- include("../partials/footer.ejs") %>
+  </body>
+</html>

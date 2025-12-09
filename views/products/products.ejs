@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/global.css" />
+
+    <style>
+      .Products__product {
+        a {
+          display: block;
+          margin-bottom: 1em;
+
+          border: 2px solid red;
+        }
+      }
+    </style>
+    <title>Grocery Store</title>
+  </head>
+  <body>
+    <%- include("../partials/header.ejs") %>
+
+    <h1 class="Products__title">Products</h1>
+    <a href="/products/new" class="Products__add-product-link"
+      ><button>Add a product</button></a
+    >
+
+    <form action="/products/filter" method="GET" class="Products__filters">
+      <p>Sort by price:</p>
+      <label>
+        <input type="radio" name="filter" value="priceAscending" <%= filter ===
+        "priceAscending" ? "checked" : "" %>/> Ascending
+      </label>
+      <label>
+        <input type="radio" name="filter" value="priceDescending" <%= filter ===
+        "priceDescending" ? "checked" : "" %>/> Descending
+      </label>
+
+      <p>Sort by name:</p>
+      <label>
+        <input type="radio" name="filter" value="nameAscending" <%= filter ===
+        "nameAscending" ? "checked" : "" %>/> Ascending
+      </label>
+      <label>
+        <input type="radio" name="filter" value="nameDescending" <%= filter ===
+        "nameDescending" ? "checked" : "" %>/> Descending
+      </label>
+
+      <p>Filter by category:</p>
+      <% categoriesLinks.forEach((categoryObject)=> { %>
+      <label
+        style="
+          background-color: <%= categoryObject.color %>;
+          border-radius: 1em;
+          padding: 0.25em;
+        "
+      >
+        <input type="checkbox" name="categories" value="<%= categoryObject.name
+        %>" <%= selectedCategories.includes(categoryObject.name) ? "checked" :
+        "" %> /> <%= categoryObject.name %>
+      </label>
+      <% }) %>
+
+      <button type="submit">Apply by filters</button>
+    </form>
+
+    <div class="Products__products-container">
+      <div class="Products__product">
+        <% if (products.length > 0) { %> <% products.forEach((productObject) =>
+        { %>
+        <a href="/products/product/<%=productObject.id%>"
+          ><%= productObject.name %> - <%= productObject.price %></a
+        >
+        <% }) %> <% } else { %>
+        <p>
+          We looked everywhere… shelves, drawers, under the couch… nothing
+          found.
+        </p>
+        <% } %>
+      </div>
+    </div>
+
+    <%- include("../partials/footer.ejs") %>
+  </body>
+</html>

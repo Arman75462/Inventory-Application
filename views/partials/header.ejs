@@ -1,0 +1,41 @@
+<style>
+  header {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2em;
+
+    border: 2px solid blue;
+
+    ul {
+      display: flex;
+      gap: 1em;
+
+      background-color: greenyellow;
+    }
+  }
+</style>
+
+<header>
+  <h3>🍑 Frootie</h3>
+
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/products">Products</a></li>
+      <li><a href="/categories">Categories</a></li>
+    </ul>
+  </nav>
+
+  <form action="/products/search" method="GET">
+    <input
+      type="text"
+      placeholder="Search products..."
+      name="searchQuery"
+      required
+    />
+    <button type="submit">Search</button>
+  </form>
+</header>

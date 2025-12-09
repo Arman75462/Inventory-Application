@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/global.css" />
+    <title>Grocery Store</title>
+  </head>
+  <body>
+    <%- include("../partials/header.ejs") %>
+
+    <h1 class="Categories__title">Categories</h1>
+    <a href="/categories/new" class="Categories__add-category-link"
+      ><button>Add a category</button></a
+    >
+
+    <div class="Categories__links">
+      <% categoriesLinks.forEach((categoryObject) => { %>
+      <p style="font-size: 1.2rem; color: <%= categoryObject.color %>">
+        <%= categoryObject.name %>
+      </p>
+      <% }) %>
+    </div>
+
+    <%- include("../partials/footer.ejs") %>
+  </body>
+</html>
