@@ -16,9 +16,11 @@
 
     <div class="Categories__links">
       <% categoriesLinks.forEach((categoryObject) => { %>
-      <p style="font-size: 1.2rem; color: <%= categoryObject.color %>">
-        <%= categoryObject.name %>
-      </p>
+      <a href="/products/filter?categories=<%= categoryObject.name %>">
+        <p style="font-size: 1.2rem; color: <%= categoryObject.color %>">
+          <%= categoryObject.name %>
+        </p>
+      </a>
       <% }) %>
     </div>
 
