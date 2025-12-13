@@ -11,15 +11,25 @@
 
     <h1>Add a product</h1>
 
-    <form action="/products/new" method="post">
+    <form action="/products/new" method="POST">
       <label for="productName">Product name:</label>
-      <input type="text" id="productName" name="productName" required />
+      <input
+        type="text"
+        id="productName"
+        name="productName"
+        minlength="2"
+        maxlength="30"
+        required
+      />
 
       <label for="productQuantity">Quantity:</label>
       <input
         type="number"
         id="productQuantity"
         name="productQuantity"
+        step="1"
+        min="1"
+        max="10000"
         required
       />
 
@@ -28,6 +38,8 @@
         type="number"
         id="productPrice"
         name="productPrice"
+        min="0"
+        max="1000"
         step="0.01"
         required
       />
@@ -37,6 +49,7 @@
         id="productDescription"
         name="productDescription"
         maxlength="100"
+        required
       ></textarea>
 
       <label for="productEmoji">Emoji:</label>
@@ -45,6 +58,7 @@
         id="productEmoji"
         name="productEmoji"
         maxlength="3"
+        pattern="\p{Emoji}+"
         required
       />
 
@@ -54,6 +68,8 @@
         <option value="<%= linkObject.name %>"><%= linkObject.name %></option>
         <% }) %>
       </select>
+
+      <%- include("../partials/errors.ejs") %>
 
       <button type="submit">Submit</button>
     </form>

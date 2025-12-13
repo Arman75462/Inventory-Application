@@ -26,7 +26,10 @@ app.use("/products", productsRouter);
 app.use("/categories", categoriesRouter);
 
 app.get("/{*splat}", (req, res) => {
-  res.status(404).send("<h1 style='color: red'>404 - PAGE NOT FOUND</h1>");
+  res.status(404).send(
+    `<h1 style='color: red'>404 - PAGE NOT FOUND</h1> 
+      <a href='/'><< Home page</a>`
+  );
 });
 app.use((err, req, res, next) => {
   console.error(err);

@@ -13,7 +13,18 @@
 
     <form action="/categories/new" method="post">
       <label for="categoryName">Category:</label>
-      <input type="text" id="categoryName" name="categoryName" required />
+      <input
+        type="text"
+        id="categoryName"
+        name="categoryName"
+        minlength="2"
+        maxlength="30"
+        pattern="^[A-Za-z-]+$"
+        title="2–30 characters. Only letters and hyphens allowed."
+        required
+      />
+
+      <%- include("../partials/errors.ejs") %>
 
       <label for="labelColor">Label color:</label>
       <input type="color" id="labelColor" name="labelColor" required />

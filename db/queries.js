@@ -81,7 +81,7 @@ export async function addCategoryToDB(categoryName, labelColor) {
 export async function searchProductsFromDB(searchQuery) {
   const { rows } = await pool.query(
     "SELECT * FROM products WHERE name ILIKE $1",
-    [`%${searchQuery}%`]
+    [`${searchQuery}%`]
   );
 
   return rows;

@@ -8,6 +8,7 @@ import {
   updateProductFromDB,
   deleteProductFromDB,
 } from "../db/queries.js";
+import { validationResult } from "express-validator";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -24,6 +25,18 @@ export async function getProducts(req, res) {
 }
 
 export async function addProduct(req, res) {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const categoriesLinks = await getCategoriesLinksFromDB();
+
+    return res.status(400).render("products/addProductForm", {
+      errors: errors.array(),
+      oldInput: req.body,
+      categoriesLinks,
+    });
+  }
+
   let {
     productName,
     productQuantity,
@@ -52,6 +65,14 @@ export async function getAddProductForm(req, res) {
 }
 
 export async function searchProducts(req, res) {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).render("partials/errors", {
+      errors: errors.array(),
+    });
+  }
+
   const { searchQuery } = req.query;
   const products = await searchProductsFromDB(searchQuery);
   const categoriesLinks = await getCategoriesLinksFromDB();
@@ -65,6 +86,14 @@ export async function searchProducts(req, res) {
 }
 
 export async function filterProducts(req, res) {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).render("partials/errors", {
+      errors: errors.array(),
+    });
+  }
+
   const { filter, categories } = req.query;
 
   // Normalize categories to always be an array
@@ -86,28 +115,73 @@ export async function filterProducts(req, res) {
 }
 
 export async function getProduct(req, res) {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    // productId param failed validation
+    return res.status(400).render("partials/errors", {
+      errors: errors.array(),
+    });
+  }
+
   const { productId } = req.params;
   const productDetails = await getProductFromDB(productId);
 
-  /*   console.log("This is from get product: ", productDetails); */
+  if (!productDetails) {
+    // No product found → handle gracefully
+    return res
+      .status(404)
+      .send(
+        "<h1 style='color: red'>Product ID does not exist</h1> <p>The product you are trying to find could not be found.</p> <a href='/products'><button>Return to products page</button></a>"
+      );
+  }
 
-  res.render("products/viewProductForm", {
+  res.render("products/individualProduct", {
     productDetails: productDetails,
+    query: req.query,
   });
 }
 
 export async function getUpdateProductForm(req, res) {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    // productId param failed validation
+    return res.status(400).render("partials/errors", {
+      errors: errors.array(),
+    });
+  }
+
   const { productId } = req.params;
   const productDetails = await getProductFromDB(productId);
 
-  /*   console.log("This is from edit: ", productDetails);
-   */
+  if (!productDetails) {
+    // No product found → handle gracefully
+    return res
+      .status(404)
+      .send(
+        "<h1 style='color: red'>Product ID does not exist</h1> <p>The product you are trying to edit could not be found.</p> <a href='/products'><button>Return to products page</button></a>"
+      );
+  }
+
   res.render("products/editProductForm", {
     productDetails: productDetails,
   });
 }
 
 export async function updateProduct(req, res) {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const productDetails = await getProductFromDB(req.params.productId);
+
+    return res.status(400).render("products/editProductForm", {
+      errors: errors.array(),
+      oldInput: req.body,
+      productDetails,
+    });
+  }
+
   const { newProductPrice, newProductDescription, newProductQuantity } =
     req.body;
   const { productId } = req.params;
