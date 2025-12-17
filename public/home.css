@@ -1,0 +1,54 @@
+.Home {
+  padding: 3em 0 4em 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2.5em;
+
+  .Home__title {
+    font-size: var(--step-3);
+  }
+
+  .Home__welcome-message {
+    font-size: var(--step-0);
+  }
+
+  .Home__links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  .Home__products-link {
+    padding: 0.75em 1em;
+
+    font-size: var(--step-4);
+    font-weight: 700;
+    text-align: left;
+    border-radius: 0.4em;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    background-color: var(--main-color);
+    color: #111;
+    transition: all 0.4s ease-in-out;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+      background-size: 105%;
+    }
+  }
+
+  .Home__products-link--products,
+  .Home__products-link--categories {
+    background-image: url("./images/fruits.png");
+    background-size: 100%;
+  }
+
+  .Home__products-link--products {
+    background-position: center;
+  }
+
+  .Home__products-link--categories {
+    background-position: bottom;
+  }
+}

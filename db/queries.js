@@ -1,7 +1,11 @@
 import pool from "./pool.js";
 
 export async function getProductsFromDB() {
-  const { rows } = await pool.query("SELECT * FROM products;");
+  const { rows } =
+    await pool.query(`SELECT products.id, products.name, products.quantity, products.price, products.description, products.emoji, categories.name AS category, categories.color
+  FROM products
+  INNER JOIN categories
+    ON products.category_id = categories.id;`);
 
   return rows;
 }
@@ -101,7 +105,7 @@ export async function filterProductsFromDB(filter, categoryList = []) {
   // Base query
   let sql = `
     SELECT products.id, products.name, products.quantity, products.price,
-      products.description, categories.name AS category, categories.color
+      products.description, products.emoji, categories.name AS category, categories.color
     FROM products
     INNER JOIN categories
       ON products.category_id = categories.id

@@ -4,33 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/global.css" />
-    <title>Grocery Store</title>
+    <link rel="stylesheet" href="/categoriesStyle/addCategoryFormStyle.css" />
+
+    <!-- Favicon -->
+    <link
+      id="favicon"
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><text x=%2232%22 y=%2242%22 font-size=%2248%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🍑</text></svg>"
+    />
+
+    <title>Add A Category</title>
   </head>
   <body>
     <%- include("../partials/header.ejs") %>
 
-    <h1>Add a category</h1>
+    <section class="wrapper AddCategory">
+      <h1 class="AddCategory__title">Add a category</h1>
 
-    <form action="/categories/new" method="post">
-      <label for="categoryName">Category:</label>
-      <input
-        type="text"
-        id="categoryName"
-        name="categoryName"
-        minlength="2"
-        maxlength="30"
-        pattern="^[A-Za-z-]+$"
-        title="2–30 characters. Only letters and hyphens allowed."
-        required
-      />
+      <form action="/categories/new" method="POST">
+        <%- include("../partials/errors.ejs") %>
 
-      <%- include("../partials/errors.ejs") %>
+        <div>
+          <label for="categoryName">Category:</label>
+          <input
+            type="text"
+            id="categoryName"
+            name="categoryName"
+            minlength="2"
+            maxlength="30"
+            pattern="^[A-Za-z -/]+$"
+            title="2–30 characters. Only letters, spaces, hyphens, and slashes are allowed."
+            required
+          />
+        </div>
 
-      <label for="labelColor">Label color:</label>
-      <input type="color" id="labelColor" name="labelColor" required />
+        <div>
+          <label for="labelColor">Label color:</label>
+          <input
+            type="color"
+            id="labelColor"
+            name="labelColor"
+            value="#c92647"
+            required
+          />
+        </div>
 
-      <button type="submit">Submit</button>
-    </form>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
 
     <%- include("../partials/footer.ejs") %>
   </body>

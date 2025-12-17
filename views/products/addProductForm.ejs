@@ -4,75 +4,100 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/global.css" />
-    <title>Grocery Store</title>
+    <link rel="stylesheet" href="/productsStyle/addProductFormStyle.css" />
+
+    <!-- Favicon -->
+    <link
+      id="favicon"
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><text x=%2232%22 y=%2242%22 font-size=%2248%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🍑</text></svg>"
+    />
+
+    <title>Add A Product</title>
   </head>
   <body>
     <%- include("../partials/header.ejs") %>
 
-    <h1>Add a product</h1>
+    <section class="wrapper AddProduct">
+      <h1 class="AddProduct__title">Add a product</h1>
 
-    <form action="/products/new" method="POST">
-      <label for="productName">Product name:</label>
-      <input
-        type="text"
-        id="productName"
-        name="productName"
-        minlength="2"
-        maxlength="30"
-        required
-      />
+      <form action="/products/new" method="POST">
+        <%- include("../partials/errors.ejs") %>
 
-      <label for="productQuantity">Quantity:</label>
-      <input
-        type="number"
-        id="productQuantity"
-        name="productQuantity"
-        step="1"
-        min="1"
-        max="10000"
-        required
-      />
+        <div>
+          <label for="productName">Product name:</label>
+          <input
+            type="text"
+            id="productName"
+            name="productName"
+            minlength="2"
+            maxlength="30"
+            required
+          />
+        </div>
 
-      <label for="productPrice">Price:</label>
-      <input
-        type="number"
-        id="productPrice"
-        name="productPrice"
-        min="0"
-        max="1000"
-        step="0.01"
-        required
-      />
+        <div>
+          <label for="productQuantity">Quantity:</label>
+          <input
+            type="number"
+            id="productQuantity"
+            name="productQuantity"
+            step="1"
+            min="1"
+            max="10000"
+            required
+          />
+        </div>
 
-      <label for="productDescription">Description:</label>
-      <textarea
-        id="productDescription"
-        name="productDescription"
-        maxlength="100"
-        required
-      ></textarea>
+        <div>
+          <label for="productPrice">Price:</label>
+          <input
+            type="number"
+            id="productPrice"
+            name="productPrice"
+            min="0"
+            max="1000"
+            step="0.01"
+            required
+          />
+        </div>
 
-      <label for="productEmoji">Emoji:</label>
-      <input
-        type="text"
-        id="productEmoji"
-        name="productEmoji"
-        maxlength="3"
-        pattern="\p{Emoji}+"
-        required
-      />
+        <div>
+          <label for="productDescription">Description:</label>
+          <textarea
+            id="productDescription"
+            name="productDescription"
+            maxlength="100"
+            required
+          ></textarea>
+        </div>
 
-      <label for="productCategory">Category:</label>
-      <select id="productCategory" name="productCategory">
-        <% categoriesLinks.forEach((linkObject)=> { %>
-        <option value="<%= linkObject.name %>"><%= linkObject.name %></option>
-        <% }) %>
-      </select>
+        <div>
+          <label for="productEmoji">Emoji:</label>
+          <input
+            type="text"
+            id="productEmoji"
+            name="productEmoji"
+            maxlength="3"
+            pattern="\p{Emoji}+"
+            required
+          />
+        </div>
 
-      <%- include("../partials/errors.ejs") %>
+        <div>
+          <label for="productCategory">Category:</label>
+          <select id="productCategory" name="productCategory">
+            <% categoriesLinks.forEach((linkObject)=> { %>
+            <option value="<%= linkObject.name %>">
+              <%= linkObject.name %>
+            </option>
+            <% }) %>
+          </select>
+        </div>
 
-      <button type="submit">Submit</button>
-    </form>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
 
     <%- include("../partials/footer.ejs") %>
   </body>

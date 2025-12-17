@@ -7,6 +7,6 @@ export const addCategoryFormValidators = [
     .withMessage("Category cannot be empty.")
     .isLength({ min: 2, max: 30 })
     .withMessage("Category must be 2–30 characters.")
-    .matches(/^[A-Za-z-]+$/)
-    .withMessage("Only letters and hyphens allowed (no spaces)."),
+    .matches(/^[A-Za-z /-]+$/)
+    .withMessage("Only letters, spaces, hyphens, and slashes are allowed."),
 ];

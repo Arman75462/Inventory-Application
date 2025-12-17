@@ -4,25 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/global.css" />
-    <title>Grocery Store</title>
+    <link rel="stylesheet" href="/categoriesStyle/categoriesStyle.css" />
+
+    <!-- Favicon -->
+    <link
+      id="favicon"
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><text x=%2232%22 y=%2242%22 font-size=%2248%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🍑</text></svg>"
+    />
+
+    <title>Frootie Categories</title>
   </head>
   <body>
     <%- include("../partials/header.ejs") %>
 
-    <h1 class="Categories__title">Categories</h1>
-    <a href="/categories/new" class="Categories__add-category-link"
-      ><button>Add a category</button></a
-    >
+    <section class="wrapper Categories">
+      <div class="Categories__header">
+        <h1 class="Categories__title">Categories</h1>
+        <a href="/categories/new" class="Categories__add-category-link"
+          ><button class="Categories__add-category-button">
+            Add a category
+          </button></a
+        >
+      </div>
 
-    <div class="Categories__links">
-      <% categoriesLinks.forEach((categoryObject) => { %>
-      <a href="/products/filter?categories=<%= categoryObject.name %>">
-        <p style="font-size: 1.2rem; color: <%= categoryObject.color %>">
-          <%= categoryObject.name %>
-        </p>
-      </a>
-      <% }) %>
-    </div>
+      <div class="Categories__links-container">
+        <% categoriesLinks.forEach((categoryObject) => { %>
+        <a
+          href="/products/filter?categories=<%= categoryObject.name %>"
+          class="Categories__links"
+          style="background-color: <%= categoryObject.color %>"
+        >
+          <p><%= categoryObject.name %></p>
+        </a>
+        <% }) %>
+      </div>
+    </section>
 
     <%- include("../partials/footer.ejs") %>
   </body>

@@ -4,35 +4,73 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/global.css" />
-    <title>Grocery Store</title>
+    <link rel="stylesheet" href="/productsStyle/individualProductStyle.css" />
+
+    <!-- Favicon -->
+    <link
+      id="favicon"
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><text x=%2232%22 y=%2242%22 font-size=%2248%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22><%= productDetails.emoji %></text></svg>"
+    />
+
+    <title><%= productDetails.name %></title>
   </head>
   <body>
     <%- include("../partials/header.ejs") %>
 
-    <a href="/products"><button>&lt;&lt; Return to products</button></a>
+    <section class="wrapper IndividualProduct">
+      <a href="/products" class="IndividualProduct__return-link"
+        ><button class="IndividualProduct__return-button">
+          &lt;&lt; Return to products
+        </button></a
+      >
 
-    <div>
-      <h1><%= productDetails.name %></h1>
-      <p><%= productDetails.emoji %></p>
-      <p><%= productDetails.price %></p>
-      <p style="color: <%=productDetails.color%>">
-        <%= productDetails.category %>
-      </p>
-      <p>Description: <%= productDetails.description %></p>
-      <p>Quantity: <%= productDetails.quantity %></p>
+      <article class="IndividualProduct__product-card">
+        <p class="IndividualProduct__emoji"><%= productDetails.emoji %></p>
 
-      <a href="/products/edit/<%=productDetails.id%>"><button>Edit</button></a>
+        <div class="IndividualProduct__content">
+          <div class="IndividualProduct__header">
+            <h1 class="IndividualProduct__title"><%= productDetails.name %></h1>
+            <p class="IndividualProduct__price">$<%= productDetails.price %></p>
+          </div>
 
-      <form action="/products/delete/<%=productDetails.id%>" method="POST">
-        <input
-          type="password"
-          name="adminPassword"
-          placeholder="Enter admin password"
-          required
-        />
-        <button>Delete</button>
-      </form>
-    </div>
+          <p
+            class="IndividualProduct__category"
+            style="background-color: <%= productDetails.color %>"
+          >
+            <%= productDetails.category %>
+          </p>
+          <p class="IndividualProduct__description">
+            <%= productDetails.description %>
+          </p>
+          <p class="IndividualProduct__quantity">
+            Quantity: <%= productDetails.quantity %>
+          </p>
+
+          <div class="IndividualProduct__actions">
+            <a
+              href="/products/edit/<%=productDetails.id%>"
+              class="IndividualProduct__edit-link"
+              ><button class="IndividualProduct__edit-button">Edit</button></a
+            >
+
+            <form
+              action="/products/delete/<%=productDetails.id%>"
+              method="POST"
+              class="IndividualProduct__delete-form"
+            >
+              <button class="IndividualProduct__delete-button">Delete</button>
+              <input
+                type="password"
+                name="adminPassword"
+                placeholder="Enter admin password"
+                required
+              />
+            </form>
+          </div>
+        </div>
+      </article>
+    </section>
 
     <%- include("../partials/footer.ejs") %>
   </body>
