@@ -31,13 +31,13 @@ The project follows a clean MVC structure and uses server-side rendering with EJ
   - Price (ascending / descending)
   - Name (ascending / descending)
 
-### 🗂 Categories
+### Categories
 
 - View all categories
 - Create new categories with custom label colors
 - Categories are linked to products via foreign keys
 
-### 🧠 UX & Data Safety
+### UX & Data Safety
 
 - Server-side form validation with detailed error messages
 - Form input persistence on validation errors
@@ -47,7 +47,7 @@ The project follows a clean MVC structure and uses server-side rendering with EJ
 
 ---
 
-## 🗄 Database Schema
+## Database Schema
 
 ### Categories Table
 
@@ -59,6 +59,8 @@ CREATE TABLE categories (
     CHECK (color ~ '^#[0-9A-Fa-f]{6}$')
 );
 ```
+
+### Products Table
 
 ```sql
 CREATE TABLE products (
