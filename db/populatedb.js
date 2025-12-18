@@ -1,6 +1,5 @@
+import "../config/env.js";
 import { Client } from "pg";
-import dotenv from "dotenv";
-dotenv.config();
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS categories (
@@ -149,10 +148,8 @@ VALUES
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: `postgres://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}/${process.env.DATABASE_NAME}`,
-    /*     ssl: {
-      rejectUnauthorized: true,
-    }, */
+    connectionString: DATABASE_URL,
+    ssl: process.env.USE_SSL === "true" ? { rejectUnauthorized: true } : false,
   });
   await client.connect();
   await client.query(SQL);

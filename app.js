@@ -1,13 +1,13 @@
+import "./config/env.js";
 import express from "express";
 import path from "path";
-import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 import { homeRouter } from "./routes/homeRouter.js";
 import { productsRouter } from "./routes/productsRouter.js";
 import { categoriesRouter } from "./routes/categoriesRouter.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-dotenv.config();
 const app = express();
 
 /* View engine */

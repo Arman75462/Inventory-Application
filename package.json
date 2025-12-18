@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "app": "node --watch app.js",
+    "dev": "NODE_ENV=development node --watch app.js",
+    "prod": "NODE_ENV=production node --watch app.js",
     "populate": "node ./db/populatedb.js"
   },
   "keywords": [],
