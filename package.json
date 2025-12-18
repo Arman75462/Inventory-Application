@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node app.js",
     "dev": "NODE_ENV=development node --watch app.js",
-    "prod": "NODE_ENV=production node --watch app.js",
-    "populate": "node ./db/populatedb.js"
+    "populate-dev": "NODE_ENV=development node ./db/populatedb.js",
+    "prod": "NODE_ENV=production node app.js",
+    "populate-prod": "NODE_ENV=production node ./db/populatedb.js"
   },
   "keywords": [],
   "author": "",

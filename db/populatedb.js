@@ -148,7 +148,7 @@ VALUES
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: DATABASE_URL,
+    connectionString: process.env.DATABASE_URL,
     ssl: process.env.USE_SSL === "true" ? { rejectUnauthorized: true } : false,
   });
   await client.connect();
