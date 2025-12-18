@@ -79,25 +79,25 @@ CREATE TABLE products (
 
 ### Products
 
-GET /products
-GET /products/new
-POST /products/new
-GET /products/search
-GET /products/filter
-GET /products/product/:productId
-GET /products/edit/:productId
-POST /products/edit/:productId
-POST /products/delete/:productId
+- GET /products
+- GET /products/new
+- POST /products/new
+- GET /products/search
+- GET /products/filter
+- GET /products/product/:productId
+- GET /products/edit/:productId
+- POST /products/edit/:productId
+- POST /products/delete/:productId
 
 ### Categories
 
-GET /categories
-GET /categories/new
-POST /categories/new
+- GET /categories
+- GET /categories/new
+- POST /categories/new
 
 ### Home
 
-GET /
+- GET /
 
 ## What This Project Demonstrates
 
