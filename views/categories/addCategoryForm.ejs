@@ -34,6 +34,7 @@
             maxlength="30"
             pattern="^[A-Za-z -/]+$"
             title="2–30 characters. Only letters, spaces, hyphens, and slashes are allowed."
+            value="<%= oldInput.categoryName %>"
             required
           />
         </div>
@@ -44,7 +45,7 @@
             type="color"
             id="labelColor"
             name="labelColor"
-            value="#c92647"
+            value="<%= oldInput.labelColor || '#c92647' %>"
             required
           />
         </div>

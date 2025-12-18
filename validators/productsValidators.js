@@ -1,5 +1,6 @@
 import { body, param, query } from "express-validator";
 import { getCategoriesLinksFromDB } from "../db/queries.js";
+import emojiRegex from "emoji-regex";
 
 export const addProductFormValidators = [
   // PRODUCT NAME
@@ -50,13 +51,13 @@ export const addProductFormValidators = [
       const regex = emojiRegex();
       const matches = value.match(regex);
 
-      if (!matches) {
-        throw new Error("You must provide a valid emoji.");
+      if (!matches || matches.length !== 1) {
+        throw new Error("You must provide exactly one emoji.");
       }
 
-      // ensure exactly one emoji (grapheme)
-      if (matches.length !== 1) {
-        throw new Error("Only one emoji allowed.");
+      // 🔐 ensure nothing else exists
+      if (matches[0] !== value) {
+        throw new Error("Only one emoji allowed, no extra characters.");
       }
 
       return true;

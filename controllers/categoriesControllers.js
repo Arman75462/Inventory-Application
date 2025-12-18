@@ -8,6 +8,10 @@ export async function getCategoriesLinks(req, res) {
 }
 
 export function getAddCategoryForm(req, res) {
+  res.render("categories/addCategoryForm", { oldInput: [] });
+}
+
+export async function addCategory(req, res) {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -17,10 +21,6 @@ export function getAddCategoryForm(req, res) {
     });
   }
 
-  res.render("categories/addCategoryForm");
-}
-
-export async function addCategory(req, res) {
   const { categoryName, labelColor } = req.body;
   await addCategoryToDB(categoryName, labelColor);
 

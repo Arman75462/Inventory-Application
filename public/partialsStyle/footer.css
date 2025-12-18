@@ -1,5 +1,6 @@
 footer {
   background-color: var(--main-color);
+  box-shadow: 0 0px 3px 1px rgba(0, 0, 0, 0.4);
 }
 
 .Footer {

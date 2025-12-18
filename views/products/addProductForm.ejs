@@ -32,6 +32,7 @@
             name="productName"
             minlength="2"
             maxlength="30"
+            value="<%= oldInput.productName %>"
             required
           />
         </div>
@@ -45,6 +46,7 @@
             step="1"
             min="1"
             max="10000"
+            value="<%= oldInput.productQuantity %>"
             required
           />
         </div>
@@ -58,6 +60,7 @@
             min="0"
             max="1000"
             step="0.01"
+            value="<%= oldInput.productPrice %>"
             required
           />
         </div>
@@ -69,7 +72,9 @@
             name="productDescription"
             maxlength="100"
             required
-          ></textarea>
+          >
+<%= oldInput.productDescription %></textarea
+          >
         </div>
 
         <div>
@@ -78,17 +83,17 @@
             type="text"
             id="productEmoji"
             name="productEmoji"
-            maxlength="3"
-            pattern="\p{Emoji}+"
+            value="<%= oldInput.productEmoji %>"
             required
           />
         </div>
 
         <div>
           <label for="productCategory">Category:</label>
-          <select id="productCategory" name="productCategory">
+          <select id="productCategory" name="productCategory" required>
             <% categoriesLinks.forEach((linkObject)=> { %>
-            <option value="<%= linkObject.name %>">
+            <option value="<%= linkObject.name %>" 
+              <%= oldInput && oldInput.productCategory === linkObject.name ? "selected" : "" %>>
               <%= linkObject.name %>
             </option>
             <% }) %>

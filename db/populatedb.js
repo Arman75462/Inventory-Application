@@ -63,7 +63,7 @@ VALUES
     ('Cream Cheese', 50, 3.19, 'Spreadable happiness.', '🍶', 3),
 
     -- Snacks
-    ('Chips', 200, 2.99, 'Bet you can’t eat just one. (You won’t.)', '🍟', 4),
+    ('Fries', 200, 2.99, 'Bet you can’t eat just one. (You won’t.)', '🍟', 4),
     ('Chocolate Bar', 180, 1.49, 'Instant serotonin.', '🍫', 4),
     ('Popcorn', 150, 1.99, 'Movie night’s best friend.', '🍿', 4),
     ('Pretzels', 130, 2.29, 'Twisted dough with big personality.', '🥨', 4),

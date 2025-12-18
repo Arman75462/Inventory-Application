@@ -37,7 +37,7 @@ export async function addProduct(req, res) {
     });
   }
 
-  let {
+  const {
     productName,
     productQuantity,
     productPrice,
@@ -61,7 +61,10 @@ export async function addProduct(req, res) {
 export async function getAddProductForm(req, res) {
   const categoriesLinks = await getCategoriesLinksFromDB();
 
-  res.render("products/addProductForm", { categoriesLinks: categoriesLinks });
+  res.render("products/addProductForm", {
+    categoriesLinks: categoriesLinks,
+    oldInput: [],
+  });
 }
 
 export async function searchProducts(req, res) {
@@ -143,15 +146,6 @@ export async function getProduct(req, res) {
 }
 
 export async function getUpdateProductForm(req, res) {
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    // productId param failed validation
-    return res.status(400).render("partials/errors", {
-      errors: errors.array(),
-    });
-  }
-
   const { productId } = req.params;
   const productDetails = await getProductFromDB(productId);
 
@@ -166,6 +160,7 @@ export async function getUpdateProductForm(req, res) {
 
   res.render("products/editProductForm", {
     productDetails: productDetails,
+    oldInput: null, // Initialize oldInput as null (not []) so the form shows productDetails on first render. Using [] would make old values default to empty strings.
   });
 }
 

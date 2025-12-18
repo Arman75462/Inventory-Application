@@ -50,7 +50,7 @@
                 min="0"
                 max="1000"
                 step="0.01"
-                value="<%= productDetails.price %>"
+                value="<%= oldInput ? oldInput.newProductPrice : productDetails.price %>"
                 required
               />
             </div>
@@ -61,7 +61,7 @@
               maxlength="100"
               required
             >
- <%= productDetails.description %></textarea
+<%= oldInput ? oldInput.newProductDescription : productDetails.description %></textarea
             >
 
             <div>
@@ -70,7 +70,7 @@
                 type="number"
                 id="newProductQuantity"
                 name="newProductQuantity"
-                value="<%= productDetails.quantity %>"
+                value="<%= oldInput ? oldInput.newProductQuantity : productDetails.quantity %>"
                 step="1"
                 min="1"
                 max="10000"

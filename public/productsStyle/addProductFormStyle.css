@@ -43,6 +43,7 @@
     border-radius: 0.6em;
     border: 2px solid var(--input-border-color);
     background-color: whitesmoke;
+    outline: none;
     transition: all 0.15s ease-in-out;
 
     &:focus {
